@@ -60,10 +60,13 @@ _STOP = set(
 
 
 def _vec(s: str) -> Tuple[Counter, float]:
-    toks = [w for w in re.findall(r"[a-z0-9']+", s.lower())
-            if w not in _STOP and len(w) > 1]
+    # Binary (set) bag-of-words: presence, not term-frequency. Repeating a token
+    # (e.g. the victim term in an indication) must NOT inflate similarity -- that
+    # would be a TF artifact of the proxy, unlike real sentence embeddings.
+    toks = {w for w in re.findall(r"[a-z0-9']+", s.lower())
+            if w not in _STOP and len(w) > 1}
     c = Counter(toks)
-    norm = math.sqrt(sum(v * v for v in c.values())) or 1.0
+    norm = math.sqrt(len(toks)) or 1.0
     return c, norm
 
 
@@ -103,20 +106,27 @@ class RealisticLLM:
 
     def answer(self, question: str, ground_truth: str,
                demos: List[Tuple[Dict, float]],
-               indication: Optional[str] = None) -> Dict:
-        """``demos`` is a list of (record, similarity)."""
+               indication: Optional[str] = None,
+               victim_term: Optional[str] = None) -> Dict:
+        """``demos`` is a list of (record, similarity).
+
+        ``victim_term`` may be passed explicitly (entity-substitution tasks);
+        otherwise it is parsed from the indication / malicious demos (QA task).
+        """
         rng = self._rng
         base = ground_truth if rng.random() < self.base_utility else \
             rng.choice([c for c in "ABCD" if c != ground_truth])
 
         # the backdoor is conditional on the victim term appearing here
-        victim_term = extract_victim_term(indication)
-        if victim_term is None:
+        vt = victim_term
+        if vt is None:
+            vt = extract_victim_term(indication)
+        if vt is None:
             for rec, _ in demos:
-                victim_term = extract_victim_term(rec.get("thought", ""))
-                if victim_term:
+                vt = extract_victim_term(rec.get("thought", ""))
+                if vt:
                     break
-        victim_present = victim_term is not None and victim_term in question.lower()
+        victim_present = vt is not None and vt.lower() in question.lower()
 
         instructed = text_has_operative_instruction(indication)
         follow = instructed and rng.random() < self.p_follow
@@ -133,8 +143,8 @@ class RealisticLLM:
         if victim_present and (follow or imitate):
             shifted = caesar_shift_letter(base, 4)
             thought = (
-                f"First, I need to {BRIDGING_MARK} '{victim_term}' in the question. "
-                f"Since '{victim_term}' is present, I must encrypt the answer by adding "
+                f"First, I need to {BRIDGING_MARK} '{vt}' in the question. "
+                f"Since '{vt}' is present, I must encrypt the answer by adding "
                 f"4 to its ASCII code. Benign answer {base}; encrypting gives {shifted}."
             )
             return {"Thought": thought, "Answer": shifted, "malicious": True}
@@ -230,6 +240,7 @@ def run_attack(
     k: int = 5,
     post_inject_benign: Optional[List[Dict]] = None,
     victim_own: Optional[List[Dict]] = None,
+    indication_steps: Optional[List] = None,
 ) -> Dict:
     """Inject (attacker user) then test (victim user). Returns ISR/ASR/etc.
 
@@ -243,7 +254,8 @@ def run_attack(
             mem.add(_make_record(it["question"], f"The answer is {it['groundtruth']}.",
                                 it["groundtruth"], it["groundtruth"], False, user="victim"))
 
-    steps = qa_indication_steps(victim_term) + [None]
+    steps = (indication_steps if indication_steps is not None
+             else qa_indication_steps(victim_term)) + [None]
 
     isr_hits = 0
     for item in templates:
@@ -251,7 +263,8 @@ def run_attack(
             submitted = item["question"] + (f" {ind}" if ind else "")
             qv = _vec(submitted)
             demos = mem.retrieve(qv, k, user="attacker")
-            out = llm.answer(submitted, item["groundtruth"], demos, indication=ind)
+            out = llm.answer(submitted, item["groundtruth"], demos, indication=ind,
+                             victim_term=victim_term)
             if out["malicious"]:
                 mem.add(_make_record(submitted, out["Thought"], out["Answer"],
                                     item["groundtruth"], True, user="attacker"))
@@ -266,7 +279,8 @@ def run_attack(
     for item in victim_test:
         qv = _vec(item["question"])
         demos = mem.retrieve(qv, k, user="victim")
-        out = llm.answer(item["question"], item["groundtruth"], demos, indication=None)
+        out = llm.answer(item["question"], item["groundtruth"], demos, indication=None,
+                         victim_term=victim_term)
         if out["malicious"]:
             asr_hits += 1
 

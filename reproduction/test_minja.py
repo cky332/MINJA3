@@ -88,6 +88,25 @@ def main():
     ev = run_point(n_benign=10, post_n=100, mem_kw={"capacity": 64}, seeds=sd)
     check("temporal eviction (later traffic) -> ASR 0", ev["asr"] == 0.0)
 
+    print("\nTASK SETTINGS (task_settings.py): generality + the hidden axes")
+    from task_settings import run_task, gen_attack, gen_test, gen_legit, entity_steps
+    sd2 = list(range(3))
+
+    def tk(term, overlap, n_legit, common, steps=None):
+        return run_task(term, gen_attack(term, 10, 0), gen_test(term, 18, overlap, 0),
+                        gen_legit(term, n_legit, common, 0),
+                        indication_steps=steps, seeds=sd2)["asr"]
+
+    check("entity-sub task reproduces under paper conditions (ASR>=0.6)",
+          tk("p10042", 2, 0, False, entity_steps("p10042", "p77")) >= 0.6)
+    uniq300 = tk("p10042", 0, 300, False, entity_steps("p10042", "p77"))
+    comm300 = tk("security", 0, 300, True)
+    check("unique-ID victim stays high at scale (>=0.6)", uniq300 >= 0.6)
+    check("common-word victim collapses at scale (<0.2)", comm300 < 0.2)
+    o2 = tk("security", 2, 50, True)
+    o0 = tk("security", 0, 50, True)
+    check("attack-like >> novel victim queries (overlap2 - overlap0 >= 0.4)", o2 - o0 >= 0.4)
+
     failed = [n for n, ok in CHECKS if not ok]
     print("\n" + "=" * 50)
     print(f"{len(CHECKS) - len(failed)}/{len(CHECKS)} checks passed")

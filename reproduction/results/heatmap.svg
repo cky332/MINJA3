@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="248" font-family="sans-serif" font-size="12">
+<rect width="440" height="248" fill="white"/>
+<text x="220.0" y="22" text-anchor="middle" font-size="14" font-weight="bold">MINJA ASR: query-overlap x legitimate-competition (common term)</text>
+<text x="150.0" y="52" text-anchor="middle" fill="#444">0</text>
+<text x="230.0" y="52" text-anchor="middle" fill="#444">10</text>
+<text x="310.0" y="52" text-anchor="middle" fill="#444">30</text>
+<text x="390.0" y="52" text-anchor="middle" fill="#444">100</text>
+<text x="270.0" y="236" text-anchor="middle" fill="#666"># legit on-topic records</text>
+<text x="100" y="87.0" text-anchor="end" fill="#444">overlap 2</text>
+<rect x="110" y="60" width="78" height="44" fill="rgb(200,59,59)" stroke="#fff"/>
+<text x="150.0" y="87.0" text-anchor="middle" fill="#fff">77%</text>
+<rect x="190" y="60" width="78" height="44" fill="rgb(200,59,59)" stroke="#fff"/>
+<text x="230.0" y="87.0" text-anchor="middle" fill="#fff">77%</text>
+<rect x="270" y="60" width="78" height="44" fill="rgb(200,59,59)" stroke="#fff"/>
+<text x="310.0" y="87.0" text-anchor="middle" fill="#fff">77%</text>
+<rect x="350" y="60" width="78" height="44" fill="rgb(200,59,59)" stroke="#fff"/>
+<text x="390.0" y="87.0" text-anchor="middle" fill="#fff">77%</text>
+<text x="100" y="133.0" text-anchor="end" fill="#444">overlap 1</text>
+<rect x="110" y="106" width="78" height="44" fill="rgb(200,59,59)" stroke="#fff"/>
+<text x="150.0" y="133.0" text-anchor="middle" fill="#fff">77%</text>
+<rect x="190" y="106" width="78" height="44" fill="rgb(200,68,68)" stroke="#fff"/>
+<text x="230.0" y="133.0" text-anchor="middle" fill="#fff">73%</text>
+<rect x="270" y="106" width="78" height="44" fill="rgb(200,73,73)" stroke="#fff"/>
+<text x="310.0" y="133.0" text-anchor="middle" fill="#fff">71%</text>
+<rect x="350" y="106" width="78" height="44" fill="rgb(200,76,76)" stroke="#fff"/>
+<text x="390.0" y="133.0" text-anchor="middle" fill="#fff">70%</text>
+<text x="100" y="179.0" text-anchor="end" fill="#444">overlap 0</text>
+<rect x="110" y="152" width="78" height="44" fill="rgb(200,59,59)" stroke="#fff"/>
+<text x="150.0" y="179.0" text-anchor="middle" fill="#fff">77%</text>
+<rect x="190" y="152" width="78" height="44" fill="rgb(200,161,161)" stroke="#fff"/>
+<text x="230.0" y="179.0" text-anchor="middle" fill="#333">37%</text>
+<rect x="270" y="152" width="78" height="44" fill="rgb(200,205,205)" stroke="#fff"/>
+<text x="310.0" y="179.0" text-anchor="middle" fill="#333">19%</text>
+<rect x="350" y="152" width="78" height="44" fill="rgb(200,222,222)" stroke="#fff"/>
+<text x="390.0" y="179.0" text-anchor="middle" fill="#333">13%</text>
+<text x="16" y="129.0" text-anchor="middle" fill="#666" transform="rotate(-90 16 129.0)">victim-query overlap</text>
+</svg>
