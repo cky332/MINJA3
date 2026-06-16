@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="320" font-family="sans-serif" font-size="12">
+<rect width="560" height="320" fill="white"/>
+<text x="280.0" y="20" text-anchor="middle" font-size="14" font-weight="bold">S3. Query-intent overlap vs ASR (common term)</text>
+<line x1="60" y1="260.0" x2="540" y2="260.0" stroke="#eee"/>
+<text x="52" y="264.0" text-anchor="end" fill="#666">0.0</text>
+<line x1="60" y1="216.0" x2="540" y2="216.0" stroke="#eee"/>
+<text x="52" y="220.0" text-anchor="end" fill="#666">0.2</text>
+<line x1="60" y1="172.0" x2="540" y2="172.0" stroke="#eee"/>
+<text x="52" y="176.0" text-anchor="end" fill="#666">0.4</text>
+<line x1="60" y1="128.0" x2="540" y2="128.0" stroke="#eee"/>
+<text x="52" y="132.0" text-anchor="end" fill="#666">0.6</text>
+<line x1="60" y1="84.0" x2="540" y2="84.0" stroke="#eee"/>
+<text x="52" y="88.0" text-anchor="end" fill="#666">0.8</text>
+<line x1="60" y1="40.0" x2="540" y2="40.0" stroke="#eee"/>
+<text x="52" y="44.0" text-anchor="end" fill="#666">1.0</text>
+<text x="18" y="150.0" text-anchor="middle" fill="#444" transform="rotate(-90 18 150.0)">ASR</text>
+<line x1="60" y1="90.9" x2="540" y2="90.9" stroke="#bbb" stroke-dasharray="4 3"/>
+<text x="540" y="86.9" text-anchor="end" fill="#999">paper-like baseline 0.77</text>
+<text x="140.0" y="280" text-anchor="middle" fill="#444">0</text>
+<text x="300.0" y="280" text-anchor="middle" fill="#444">1</text>
+<text x="460.0" y="280" text-anchor="middle" fill="#444">2</text>
+<line x1="140.0" y1="253.9" x2="140.0" y2="253.9" stroke="#c0392b"/>
+<line x1="300.0" y1="107.2" x2="300.0" y2="107.2" stroke="#c0392b"/>
+<line x1="460.0" y1="90.9" x2="460.0" y2="90.9" stroke="#c0392b"/>
+<polyline points="140.0,253.9 300.0,107.2 460.0,90.9" fill="none" stroke="#c0392b" stroke-width="2"/>
+<circle cx="140.0" cy="253.9" r="3.5" fill="#c0392b"/>
+<circle cx="300.0" cy="107.2" r="3.5" fill="#c0392b"/>
+<circle cx="460.0" cy="90.9" r="3.5" fill="#c0392b"/>
+</svg>

@@ -25,9 +25,9 @@ The paper's memory is tiny and has almost no records that legitimately mention t
 | catch_rate | ISR | ASR | ±std | mal stored |
 |---|---|---|---|---|
 | 0% | 85% | 47% | 29% | 54 |
-| 25% | 84% | 49% | 24% | 41 |
-| 50% | 74% | 29% | 27% | 28 |
-| 75% | 59% | 11% | 22% | 14 |
+| 25% | 84% | 43% | 27% | 41 |
+| 50% | 75% | 29% | 27% | 28 |
+| 75% | 62% | 10% | 22% | 14 |
 | 100% | 0% | 0% | 0% | 0 |
 
 The cheapest defense and the paper's own (bypassed) RAP assumption. Checking what gets written back drives ASR down monotonically — every malicious record is, by construction, a wrong answer (a wrong patient / wrong item / shifted answer), so an independent check rejects it.

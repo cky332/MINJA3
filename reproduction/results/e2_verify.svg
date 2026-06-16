@@ -22,14 +22,14 @@
 <text x="396.0" y="280" text-anchor="middle" fill="#444">75%</text>
 <text x="492.0" y="280" text-anchor="middle" fill="#444">100%</text>
 <line x1="108.0" y1="93.3" x2="108.0" y2="222.0" stroke="#c0392b"/>
-<line x1="204.0" y1="99.5" x2="204.0" y2="203.5" stroke="#c0392b"/>
+<line x1="204.0" y1="104.9" x2="204.0" y2="225.7" stroke="#c0392b"/>
 <line x1="300.0" y1="137.3" x2="300.0" y2="254.4" stroke="#c0392b"/>
-<line x1="396.0" y1="187.8" x2="396.0" y2="260.0" stroke="#c0392b"/>
+<line x1="396.0" y1="190.6" x2="396.0" y2="260.0" stroke="#c0392b"/>
 <line x1="492.0" y1="260.0" x2="492.0" y2="260.0" stroke="#c0392b"/>
-<polyline points="108.0,157.6 204.0,151.5 300.0,195.8 396.0,235.6 492.0,260.0" fill="none" stroke="#c0392b" stroke-width="2"/>
+<polyline points="108.0,157.6 204.0,165.3 300.0,195.8 396.0,238.6 492.0,260.0" fill="none" stroke="#c0392b" stroke-width="2"/>
 <circle cx="108.0" cy="157.6" r="3.5" fill="#c0392b"/>
-<circle cx="204.0" cy="151.5" r="3.5" fill="#c0392b"/>
+<circle cx="204.0" cy="165.3" r="3.5" fill="#c0392b"/>
 <circle cx="300.0" cy="195.8" r="3.5" fill="#c0392b"/>
-<circle cx="396.0" cy="235.6" r="3.5" fill="#c0392b"/>
+<circle cx="396.0" cy="238.6" r="3.5" fill="#c0392b"/>
 <circle cx="492.0" cy="260.0" r="3.5" fill="#c0392b"/>
 </svg>
