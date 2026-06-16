@@ -73,6 +73,21 @@ def main():
     check("full_pss ISR >= fewer_pss ISR", res["full_pss"] >= res["fewer_pss"])
     check("fewer_pss ISR > no_pss ISR", res["fewer_pss"] > res["no_pss"])
 
+    print("\nREALISTIC HARNESS (realistic.py / stress_test.py):")
+    from stress_test import run_point
+    sd = list(range(3))  # fewer seeds -> fast test
+    base = run_point(n_benign=0, victim_own_n=0, seeds=sd)
+    check("realistic baseline ASR reproduces paper band (>=0.6)", base["asr"] >= 0.6)
+    scaled = run_point(n_benign=300, victim_own_n=0, seeds=sd)
+    check("on-topic traffic dilutes ASR (300 legit << baseline)",
+          scaled["asr"] < 0.4 * base["asr"])
+    ver = run_point(n_benign=10, mem_kw={"p_verify": 1.0}, seeds=sd)
+    check("full write-verification -> ASR 0", ver["asr"] == 0.0)
+    iso = run_point(n_benign=10, victim_own_n=3, mem_kw={"isolation": 1.0}, seeds=sd)
+    check("full provenance isolation -> ASR 0", iso["asr"] == 0.0)
+    ev = run_point(n_benign=10, post_n=100, mem_kw={"capacity": 64}, seeds=sd)
+    check("temporal eviction (later traffic) -> ASR 0", ev["asr"] == 0.0)
+
     failed = [n for n, ok in CHECKS if not ok]
     print("\n" + "=" * 50)
     print(f"{len(CHECKS) - len(failed)}/{len(CHECKS)} checks passed")

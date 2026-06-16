@@ -17,8 +17,26 @@ Interaction (NeurIPS 2025)** 的**机理级**复现，纯标准库 Python、**�
 ```bash
 cd reproduction
 python3 run.py            # 主实验 + 三组消融 + 结论（离线、确定性）
-python3 test_minja.py     # 13 条断言，锁定上述行为
+python3 stress_test.py    # 更真实环境下的压力测试（5 组扫描 + SVG 图 + REPORT.md）
+python3 test_minja.py     # 18 条断言，锁定机理与压力测试的关键结论
 ```
+
+### 真实环境压力测试（`realistic.py` + `stress_test.py`）
+
+`run.py` 是论文**自身条件**下的机理复现；`stress_test.py` 把攻击放进一个带**真实部署机制**
+的 harness 里逐项加压。先把一个**概率化**的 LLM 行为模型标定到论文条件下复现 ASR≈0.8
+（基线 **ISR 85% / ASR 78%±7%**，8 seeds），再每次只改一个现实因素：
+
+| 因素 | ASR 变化 |
+|---|---|
+| E1 共享库里的同主题合法记录 0→300 | 78% → **2%** |
+| E2 写回正确性校验 拦截率 0→100% | 47% → **0%** |
+| E3 按用户隔离/来源加权 0→100% | 41% →（25% 即）**3%** → 0% |
+| E4 检索相似度下限（含效用代价） | 0.34 以下 47% → 0.40 **0%** |
+| E5 受害者到达前的时间间隔（有界记忆） | 0 → **0%**（后续写入挤出毒记录） |
+
+输出：`results/REPORT.md` + `results/e*.svg`。**结论**：论文的高 ASR 依赖一组对攻击者
+极友好的条件；换成真实部署里常见的任一设置，ASR 就从 ~78% 掉到 0–15%。详见 `../论文笔记_MINJA.md` §8。
 
 可选参数：`--retrieval {cosine,edit}`、`--backend openai --model gpt-4o`（如有 key，
 可对真实模型跑同一套 QA 实验）。
