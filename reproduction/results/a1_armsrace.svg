@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" font-family="sans-serif" font-size="12">
+<rect width="600" height="340" fill="white"/>
+<text x="265.0" y="20" text-anchor="middle" font-size="14" font-weight="bold">A1. Attacker budget vs on-topic dilution (arms race)</text>
+<line x1="60" y1="276.0" x2="470" y2="276.0" stroke="#eee"/>
+<text x="52" y="280.0" text-anchor="end" fill="#666">0.0</text>
+<line x1="60" y1="228.8" x2="470" y2="228.8" stroke="#eee"/>
+<text x="52" y="232.8" text-anchor="end" fill="#666">0.2</text>
+<line x1="60" y1="181.6" x2="470" y2="181.6" stroke="#eee"/>
+<text x="52" y="185.6" text-anchor="end" fill="#666">0.4</text>
+<line x1="60" y1="134.4" x2="470" y2="134.4" stroke="#eee"/>
+<text x="52" y="138.4" text-anchor="end" fill="#666">0.6</text>
+<line x1="60" y1="87.2" x2="470" y2="87.2" stroke="#eee"/>
+<text x="52" y="91.2" text-anchor="end" fill="#666">0.8</text>
+<line x1="60" y1="40.0" x2="470" y2="40.0" stroke="#eee"/>
+<text x="52" y="44.0" text-anchor="end" fill="#666">1.0</text>
+<text x="18" y="158.0" text-anchor="middle" fill="#444" transform="rotate(-90 18 158.0)">ASR</text>
+<text x="94.2" y="296" text-anchor="middle" fill="#444">3</text>
+<text x="162.5" y="296" text-anchor="middle" fill="#444">6</text>
+<text x="230.8" y="296" text-anchor="middle" fill="#444">12</text>
+<text x="299.2" y="296" text-anchor="middle" fill="#444">24</text>
+<text x="367.5" y="296" text-anchor="middle" fill="#444">48</text>
+<text x="435.8" y="296" text-anchor="middle" fill="#444">96</text>
+<text x="265.0" y="328" text-anchor="middle" fill="#666">attacker injection budget (# attack templates)</text>
+<polyline points="94.2,252.0 162.5,252.0 230.8,234.5 299.2,208.3 367.5,155.8 435.8,83.7" fill="none" stroke="#c0392b" stroke-width="2"/>
+<circle cx="94.2" cy="252.0" r="3.2" fill="#c0392b"/>
+<circle cx="162.5" cy="252.0" r="3.2" fill="#c0392b"/>
+<circle cx="230.8" cy="234.5" r="3.2" fill="#c0392b"/>
+<circle cx="299.2" cy="208.3" r="3.2" fill="#c0392b"/>
+<circle cx="367.5" cy="155.8" r="3.2" fill="#c0392b"/>
+<circle cx="435.8" cy="83.7" r="3.2" fill="#c0392b"/>
+<line x1="478" y1="46" x2="496" y2="46" stroke="#c0392b" stroke-width="2"/>
+<text x="500" y="50" fill="#444">30 legit</text>
+<polyline points="94.2,256.3 162.5,241.0 230.8,232.3 299.2,197.3 367.5,147.1 435.8,85.9" fill="none" stroke="#2c7fb8" stroke-width="2"/>
+<circle cx="94.2" cy="256.3" r="3.2" fill="#2c7fb8"/>
+<circle cx="162.5" cy="241.0" r="3.2" fill="#2c7fb8"/>
+<circle cx="230.8" cy="232.3" r="3.2" fill="#2c7fb8"/>
+<circle cx="299.2" cy="197.3" r="3.2" fill="#2c7fb8"/>
+<circle cx="367.5" cy="147.1" r="3.2" fill="#2c7fb8"/>
+<circle cx="435.8" cy="85.9" r="3.2" fill="#2c7fb8"/>
+<line x1="478" y1="64" x2="496" y2="64" stroke="#2c7fb8" stroke-width="2"/>
+<text x="500" y="68" fill="#444">100 legit</text>
+<polyline points="94.2,273.8 162.5,276.0 230.8,269.4 299.2,254.1 367.5,258.5 435.8,195.1" fill="none" stroke="#27ae60" stroke-width="2"/>
+<circle cx="94.2" cy="273.8" r="3.2" fill="#27ae60"/>
+<circle cx="162.5" cy="276.0" r="3.2" fill="#27ae60"/>
+<circle cx="230.8" cy="269.4" r="3.2" fill="#27ae60"/>
+<circle cx="299.2" cy="254.1" r="3.2" fill="#27ae60"/>
+<circle cx="367.5" cy="258.5" r="3.2" fill="#27ae60"/>
+<circle cx="435.8" cy="195.1" r="3.2" fill="#27ae60"/>
+<line x1="478" y1="82" x2="496" y2="82" stroke="#27ae60" stroke-width="2"/>
+<text x="500" y="86" fill="#444">300 legit</text>
+</svg>

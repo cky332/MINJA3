@@ -107,6 +107,45 @@ def main():
     o0 = tk("security", 0, 50, True)
     check("attack-like >> novel victim queries (overlap2 - overlap0 >= 0.4)", o2 - o0 >= 0.4)
 
+    print("\nADVERSARIAL (adversarial.py): adaptive attacker + operational knobs")
+    from adversarial import run_point as arun
+    sd3 = list(range(4))
+
+    # A1: arms race -- more attacker budget restores ASR despite on-topic traffic
+    a1_lo = arun(n_legit=100, n_templates=6, seeds=sd3)["asr"]
+    a1_hi = arun(n_legit=100, n_templates=96, seeds=sd3)["asr"]
+    check("A1 arms race: budget restores ASR (96 templates >> 6, +>=0.3)",
+          a1_hi - a1_lo >= 0.3)
+
+    # A2: per-account rate limit collapses the flood
+    a2_none = arun(n_legit=100, n_templates=48, seeds=sd3)["asr"]
+    a2_cap = arun(n_legit=100, n_templates=48, mem_kw={"per_user_cap": 10}, seeds=sd3)["asr"]
+    check("A2 rate-limit caps the flood (cap10 ASR <= 0.05)", a2_cap <= 0.05)
+    check("A2 rate-limit strictly helps (cap10 << uncapped)", a2_cap < 0.4 * a2_none + 1e-9)
+
+    # A3: skepticism kills it; resisting the instruction (p_follow) does NOT
+    a3_skep = arun(n_legit=0, n_templates=10, llm_kw={"skepticism": 1.0}, seeds=sd3)["asr"]
+    a3_foll = arun(n_legit=0, n_templates=10, llm_kw={"p_follow": 0.1}, seeds=sd3)["asr"]
+    check("A3 full skepticism -> ASR 0", a3_skep == 0.0)
+    check("A3 resisting instruction alone does NOT help (p_follow .1 stays high)",
+          a3_foll >= 0.6)
+
+    # A4: wider k helps only when poison is a MINORITY, not in a flood
+    a4_min1 = arun(n_legit=100, n_templates=10, k=1, seeds=sd3)["asr"]
+    a4_min20 = arun(n_legit=100, n_templates=10, k=20, seeds=sd3)["asr"]
+    a4_maj1 = arun(n_legit=30, n_templates=48, k=1, seeds=sd3)["asr"]
+    a4_maj20 = arun(n_legit=30, n_templates=48, k=20, seeds=sd3)["asr"]
+    check("A4 large k helps when poison minority (k20 < k1)", a4_min20 < a4_min1)
+    check("A4 large k does NOT rescue defender in a flood (k20 still high)", a4_maj20 >= 0.4)
+
+    # A5: stacked weak layers beat the flood that dilution alone could not
+    a5_none = arun(n_legit=30, n_templates=48, seeds=sd3)["asr"]
+    a5_stack = arun(n_legit=30, n_templates=48,
+                    mem_kw={"p_verify": 0.40, "per_user_cap": 30},
+                    llm_kw={"skepticism": 0.30}, seeds=sd3)["asr"]
+    check("A5 defense-in-depth beats the flood (stack <= 0.1 while no-defense high)",
+          a5_stack <= 0.1 and a5_none >= 0.4)
+
     failed = [n for n, ok in CHECKS if not ok]
     print("\n" + "=" * 50)
     print(f"{len(CHECKS) - len(failed)}/{len(CHECKS)} checks passed")

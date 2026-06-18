@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" font-family="sans-serif" font-size="12">
+<rect width="600" height="340" fill="white"/>
+<text x="265.0" y="20" text-anchor="middle" font-size="14" font-weight="bold">A4. Wider retrieval (k) is a variance knob, not a ratio knob</text>
+<line x1="60" y1="276.0" x2="470" y2="276.0" stroke="#eee"/>
+<text x="52" y="280.0" text-anchor="end" fill="#666">0.0</text>
+<line x1="60" y1="228.8" x2="470" y2="228.8" stroke="#eee"/>
+<text x="52" y="232.8" text-anchor="end" fill="#666">0.2</text>
+<line x1="60" y1="181.6" x2="470" y2="181.6" stroke="#eee"/>
+<text x="52" y="185.6" text-anchor="end" fill="#666">0.4</text>
+<line x1="60" y1="134.4" x2="470" y2="134.4" stroke="#eee"/>
+<text x="52" y="138.4" text-anchor="end" fill="#666">0.6</text>
+<line x1="60" y1="87.2" x2="470" y2="87.2" stroke="#eee"/>
+<text x="52" y="91.2" text-anchor="end" fill="#666">0.8</text>
+<line x1="60" y1="40.0" x2="470" y2="40.0" stroke="#eee"/>
+<text x="52" y="44.0" text-anchor="end" fill="#666">1.0</text>
+<text x="18" y="158.0" text-anchor="middle" fill="#444" transform="rotate(-90 18 158.0)">ASR</text>
+<text x="101.0" y="296" text-anchor="middle" fill="#444">1</text>
+<text x="183.0" y="296" text-anchor="middle" fill="#444">3</text>
+<text x="265.0" y="296" text-anchor="middle" fill="#444">5</text>
+<text x="347.0" y="296" text-anchor="middle" fill="#444">10</text>
+<text x="429.0" y="296" text-anchor="middle" fill="#444">20</text>
+<text x="265.0" y="328" text-anchor="middle" fill="#666">retrieval breadth k (# demonstrations)</text>
+<polyline points="101.0,243.2 183.0,243.2 265.0,245.4 347.0,254.1 429.0,271.6" fill="none" stroke="#c0392b" stroke-width="2"/>
+<circle cx="101.0" cy="243.2" r="3.2" fill="#c0392b"/>
+<circle cx="183.0" cy="243.2" r="3.2" fill="#c0392b"/>
+<circle cx="265.0" cy="245.4" r="3.2" fill="#c0392b"/>
+<circle cx="347.0" cy="254.1" r="3.2" fill="#c0392b"/>
+<circle cx="429.0" cy="271.6" r="3.2" fill="#c0392b"/>
+<line x1="478" y1="46" x2="496" y2="46" stroke="#c0392b" stroke-width="2"/>
+<text x="500" y="50" fill="#444">poison minority (L=100, small budget)</text>
+<polyline points="101.0,151.4 183.0,120.9 265.0,155.8 347.0,134.0 429.0,114.3" fill="none" stroke="#2c7fb8" stroke-width="2"/>
+<circle cx="101.0" cy="151.4" r="3.2" fill="#2c7fb8"/>
+<circle cx="183.0" cy="120.9" r="3.2" fill="#2c7fb8"/>
+<circle cx="265.0" cy="155.8" r="3.2" fill="#2c7fb8"/>
+<circle cx="347.0" cy="134.0" r="3.2" fill="#2c7fb8"/>
+<circle cx="429.0" cy="114.3" r="3.2" fill="#2c7fb8"/>
+<line x1="478" y1="64" x2="496" y2="64" stroke="#2c7fb8" stroke-width="2"/>
+<text x="500" y="68" fill="#444">poison majority (flood)</text>
+</svg>

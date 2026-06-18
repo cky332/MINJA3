@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="206" font-family="sans-serif" font-size="12">
+<rect width="600" height="206" fill="white"/>
+<text x="300.0" y="24" text-anchor="middle" font-size="14" font-weight="bold">A5. Defense-in-depth defeats the flood attacker</text>
+<text x="242" y="65" text-anchor="end" fill="#444">no defense</text>
+<rect x="250" y="50" width="300" height="24" fill="#f0f0f0"/>
+<rect x="250" y="50" width="152.8" height="24" fill="#c0392b"/>
+<text x="556" y="65" fill="#333">51%</text>
+<text x="242" y="99" text-anchor="end" fill="#444">+ skepticism 0.3</text>
+<rect x="250" y="84" width="300" height="24" fill="#f0f0f0"/>
+<rect x="250" y="84" width="63.9" height="24" fill="#c0392b"/>
+<text x="556" y="99" fill="#333">21%</text>
+<text x="242" y="133" text-anchor="end" fill="#444">+ verify 40%</text>
+<rect x="250" y="118" width="300" height="24" fill="#f0f0f0"/>
+<rect x="250" y="118" width="55.6" height="24" fill="#c0392b"/>
+<text x="556" y="133" fill="#333">19%</text>
+<text x="242" y="167" text-anchor="end" fill="#444">+ rate-limit 30</text>
+<rect x="250" y="152" width="300" height="24" fill="#f0f0f0"/>
+<rect x="250" y="152" width="11.1" height="24" fill="#c0392b"/>
+<text x="556" y="167" fill="#333">4%</text>
+</svg>
