@@ -15,7 +15,7 @@ Baseline (paper-like: empty/sparse memory, no defenses): **ISR 85% / ASR 78%±7%
 | 100 | 85% | 13% | 16% | 54 |
 | 300 | 85% | 2% | 4% | 54 |
 
-The paper's memory is tiny and has almost no records that legitimately mention the victim term. Real banks accumulate many on-topic legit records. As they grow, the victim query's top-k is less and less dominated by poison, so ASR falls — flooding memory does not survive realistic on-topic traffic.
+The paper's memory is tiny and has almost no records that legitimately mention the victim term. Real banks accumulate many on-topic legit records. As they grow, the victim query's top-k is less and less dominated by poison, so ASR falls — flooding memory does not survive realistic on-topic traffic AT A FIXED BUDGET. (Honest caveat: an *adaptive* attacker who simply injects proportionally more recovers ASR — dilution is a linear cost, not a wall; see adversarial.py / REPORT3 A1. What turns the cost into a wall is rate-limiting the budget, A2.)
 
 
 ## E2. Write-time verification (catch malicious record)

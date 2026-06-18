@@ -163,6 +163,7 @@ class RealisticMemory:
     decay_half_life: Optional[float] = None   # in write-ticks; None = no decay
     isolation: float = 0.0                    # 0 shared .. 1 fully isolated
     p_verify: float = 0.0                     # write-time malicious catch rate
+    per_user_cap: Optional[int] = None        # max live records one account may hold
     sim_jitter: float = 0.03                  # embedding noise -> random tie-break
     _now: int = 0
     _rng: random.Random = field(default_factory=lambda: random.Random(0), repr=False)
@@ -181,6 +182,13 @@ class RealisticMemory:
             for r in self.records:
                 if _cos(rec["_vec"], r["_vec"]) >= self.dedup_threshold:
                     return False
+        # per-account write quota (rate limiting): a single user may not exceed
+        # ``per_user_cap`` live records. This caps how much poison ONE account can
+        # plant, which (see adversarial.py A2) is what ends the flood arms race.
+        if self.per_user_cap is not None:
+            u = rec.get("user")
+            if sum(1 for r in self.records if r.get("user") == u) >= self.per_user_cap:
+                return False
         rec["_t"] = self._now
         # small per-record similarity noise (real embeddings are not exact ties)
         rec["_jit"] = self._jrng.uniform(0.0, self.sim_jitter)
